@@ -17,5 +17,18 @@
         "48": "tophive_logo.png",
         "128": "tophive_logo.png"
     },
-    "options_page": "options.html"
+    "options_page": "options.html",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
 }
