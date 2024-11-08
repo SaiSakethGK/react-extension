@@ -1,8 +1,13 @@
 const path = require('path');
+const copyPlugin = require('copy-webpack-plugin');
+const htmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/test.tsx',
+    devtool: 'cheap-module-source-map',
+    entry: {
+        popup: path.resolve('src/popup/popup.tsx'),
+    },
     module: {
         rules: [{
             use: 'ts-loader',
@@ -10,12 +15,26 @@ module.exports = {
             exclude: /node_modules/,
         }]
     },
+    plugins: [
+        new copyPlugin({
+            patterns: [
+                {
+                    from: path.resolve('src/manifest.json'),
+                    to: path.resolve('dist')
+                }
+            ]
+        }),
+        new htmlPlugin({
+            title: 'React Extension',
+            filename: 'popup.html',
+            chunks: ['popup'],
+        })
+    ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
     output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: '[name].js',
+        path: path.resolve('dist')
     }
 }
-
