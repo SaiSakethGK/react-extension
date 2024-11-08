@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "React Extension",
+    "description": "Chrome extension in React",
+    "version": "1.0.1",
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "React Extension",
+        "default_icon": {
+            "16": "tophive_logo.png",
+            "48": "tophive_logo.png",
+            "128": "tophive_logo.png"
+        }
+    },
+    "icons": {
+        "16": "tophive_logo.png",
+        "48": "tophive_logo.png",
+        "128": "tophive_logo.png"
+    },
+    "options_page": "options.html"
+}
