@@ -1,10 +1,9 @@
 const path = require('path');
 const copyPlugin = require('copy-webpack-plugin');
 const htmlPlugin = require('html-webpack-plugin');
-const { get } = require('http');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
     devtool: 'cheap-module-source-map',
     entry: {
         popup: path.resolve('src/popup/popup.tsx'),
@@ -29,6 +28,11 @@ module.exports = {
     ]
     },
     plugins: [
+        new CleanWebpackPlugin(
+            {
+                cleanStaleWebpackAssets: false,
+            }
+        ),
         new copyPlugin({
             patterns: [
                 {
